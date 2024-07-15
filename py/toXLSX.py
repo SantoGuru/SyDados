@@ -19,7 +19,7 @@ def json_to_xlsx(json_file_path, output_file_path):
 
 def main(input_file, output_file):
     json_to_xlsx(input_file, output_file)
-    print(f"Script 1 processou o arquivo {input_file} e salvou o resultado em {output_file}")
+    print(f"toXLSX processou o arquivo {input_file} e salvou o resultado em {output_file}")
 
 if __name__ == "__main__":
     import sys

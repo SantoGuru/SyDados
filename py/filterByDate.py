@@ -3,7 +3,7 @@ from datetime import datetime
 
 def process_json(file_path, output_file_path):
     # Carrega o arquivo JSON
-    with open(file_path, 'r') as file:
+    with open(file_path, 'r',encoding='utf-8') as file:
         data = json.load(file)
 
     # Dicionário para armazenar a entrada mais recente para cada nome
@@ -24,7 +24,7 @@ def process_json(file_path, output_file_path):
     result = [{k: v for k, v in entry.items() if k != 'data'} for entry in latest_entries.values()]
 
     # Salva o resultado em um novo arquivo JSON
-    with open(output_file_path, 'w') as file:
+    with open(output_file_path, 'w',encoding='utf-8') as file:
         json.dump(result, file, indent=4)
 
     print("filterByDate: Processamento concluído com sucesso. Arquivo salvo em:", output_file_path)

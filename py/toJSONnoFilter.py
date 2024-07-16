@@ -3,6 +3,11 @@ import json
 import os
 import re
 
+# Função para formatar o número de telefone
+def format_phone(phone):
+    phone = ''.join(filter(str.isdigit, str(phone)))
+    return phone
+
 # Função para converter o Excel para JSON
 def convert_excel_to_json(excel_path, json_path):
     df = pd.read_excel(excel_path, sheet_name='Planilha1')
@@ -13,12 +18,12 @@ def convert_excel_to_json(excel_path, json_path):
     for numero, group in grouped:
         invoice = {
             "data": group['DATA'].iloc[0].strftime('%Y-%m-%d') if not pd.isna(group['DATA'].iloc[0]) else "no-date",
-            "nome": group['NOME'].iloc[0] if not pd.isna(group['NOME'].iloc[0]) else "Cliente ("+numero+")",
-            "numero": numero,
+            "nome": group['NOME'].iloc[0] if not pd.isna(group['NOME'].iloc[0]) else "Cliente ("+format_phone(numero)+")",
+            "numero": format_phone(numero),
             "e-mail": group["E-MAIL"].iloc[0] if not pd.isna(group['E-MAIL'].iloc[0]) else "no-email@teste.com",
         }
         invoices.append(invoice)
-    with open(json_path, 'w') as json_file:
+    with open(json_path, 'w', encoding='utf-8') as json_file:
         json.dump(invoices, json_file, ensure_ascii=False, indent=4)
 
     print("Conversão concluída com sucesso")

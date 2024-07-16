@@ -6,7 +6,7 @@ def is_valid_phone(phone):
     return re.fullmatch(r'55\d{11}', phone) is not None
 
 def process_json(input_path, output_path):
-    with open(input_path, 'r', encoding='utf-8') as file:
+    with open(input_path, 'r', encoding='utf-8', errors='ignore') as file:
         data = json.load(file)
     
     valid_clients = []

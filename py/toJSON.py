@@ -43,6 +43,7 @@ def convert_excel_to_json(excel_path, json_path):
             "nome": group['NOME'].iloc[0] if not pd.isna(group['NOME'].iloc[0]) else "Cliente ("+format_phone(numero)+")",
             "numero": format_phone(numero),
             "e-mail": group["E-MAIL"].iloc[0] if not pd.isna(group['E-MAIL'].iloc[0]) else "no-email@teste.com",
+            #"etiquetas": group["ETIQUETAS"].iloc[0] if not pd.isna(group['ETIQUETAS'].iloc[0]) else "import, "+group['DATA'].iloc[0].strftime('%Y_%m'),
             }
             invoices.append(invoice)
     with open(json_path, 'w',encoding='utf-8') as json_file:
